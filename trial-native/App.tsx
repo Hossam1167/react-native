@@ -8,7 +8,7 @@ type UpdateGoalList = {
 
 export default function App() {
   const [value, setValue] = useState("");
-  const [goalsList, setGoalsList] = useState([]);
+  const [goalsList, setGoalsList] = useState<string[]>([]);
 
   const goalInputHandler: (text: string) => void = entertText => {
     setValue(entertText);
