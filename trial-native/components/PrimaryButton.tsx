@@ -26,12 +26,10 @@ const styles = StyleSheet.create({
 
 interface PrimaryButtonProps {
   buttonLabel: string;
+  onPressProp: () => void;
 }
 
-const PrimaryButton = ({ buttonLabel }: PrimaryButtonProps) => {
-  const pressHandler = () => {
-    console.log("hello");
-  };
+const PrimaryButton = ({ buttonLabel, onPressProp }: PrimaryButtonProps) => {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
@@ -40,7 +38,7 @@ const PrimaryButton = ({ buttonLabel }: PrimaryButtonProps) => {
             ? [styles.pressed, styles.buttonInnerContainer]
             : styles.buttonInnerContainer
         }
-        onPress={pressHandler}
+        onPress={onPressProp}
         android_ripple={{ color: "#cac7c7" }}
       >
         <Text style={styles.buttonLable}>{buttonLabel}</Text>
