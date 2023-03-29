@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
   },
+  pressed: {
+    opacity: 0.75,
+  },
 });
 
 interface PrimaryButtonProps {
@@ -32,7 +35,11 @@ const PrimaryButton = ({ buttonLabel }: PrimaryButtonProps) => {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
-        style={styles.buttonInnerContainer}
+        style={({ pressed }) =>
+          pressed
+            ? [styles.pressed, styles.buttonInnerContainer]
+            : styles.buttonInnerContainer
+        }
         onPress={pressHandler}
         android_ripple={{ color: "#cac7c7" }}
       >

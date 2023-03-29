@@ -13,8 +13,15 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 6,
     shadowOpacity: 0.5,
+    alignItems: "center",
   },
-
+  buttonsContainer: {
+    flexDirection: "row",
+    marginTop: 16,
+  },
+  buttonHolder: {
+    flex: 1,
+  },
   inputArea: {
     height: 50,
     width: 50,
@@ -38,8 +45,14 @@ const StartGameScreen = () => {
         autoCapitalize="none"
         autoCorrect={false}
       />
-      <PrimaryButton buttonLabel="Reset" />
-      <PrimaryButton buttonLabel="Confirm" />
+      <View style={styles.buttonsContainer}>
+        <View style={styles.buttonHolder}>
+          <PrimaryButton buttonLabel="Reset" />
+        </View>
+        <View style={styles.buttonHolder}>
+          <PrimaryButton buttonLabel="Confirm" />
+        </View>
+      </View>
     </View>
   );
 };
