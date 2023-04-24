@@ -1,5 +1,6 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
+import { colors } from "../../constants/colors";
 
 const styles = StyleSheet.create({
   buttonOuterContainer: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   buttonInnerContainer: {
-    backgroundColor: "#151515",
+    backgroundColor: colors.primaryColor,
     paddingVertical: 8,
     paddingHorizontal: 16,
     elevation: 10,
@@ -24,12 +25,17 @@ const styles = StyleSheet.create({
   },
 });
 
-interface PrimaryButtonProps {
-  buttonLabel: string;
+export interface PrimaryButtonProps {
+  buttonLabel?: string;
   onPressProp: () => void;
+  children?: ReactElement[] | string;
 }
 
-const PrimaryButton = ({ buttonLabel, onPressProp }: PrimaryButtonProps) => {
+const PrimaryButton = ({
+  buttonLabel,
+  onPressProp,
+  children,
+}: PrimaryButtonProps) => {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
@@ -39,9 +45,9 @@ const PrimaryButton = ({ buttonLabel, onPressProp }: PrimaryButtonProps) => {
             : styles.buttonInnerContainer
         }
         onPress={onPressProp}
-        android_ripple={{ color: "#cac7c7" }}
+        android_ripple={{ color: colors.Primary600 }}
       >
-        <Text style={styles.buttonLable}>{buttonLabel}</Text>
+        <Text style={styles.buttonLable}>{buttonLabel || children}</Text>
       </Pressable>
     </View>
   );

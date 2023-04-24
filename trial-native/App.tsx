@@ -8,6 +8,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
+import { colors } from "./constants/colors";
 
 const styles = StyleSheet.create({
   rootScreen: {
@@ -26,7 +27,10 @@ export default function App() {
   };
 
   return (
-    <LinearGradient colors={["#e10e66", "#330347"]} style={styles.rootScreen}>
+    <LinearGradient
+      colors={[colors.pink, colors.blue]}
+      style={styles.rootScreen}
+    >
       <ImageBackground
         source={require("./assets/images/background.png")}
         resizeMode="cover"
@@ -37,7 +41,7 @@ export default function App() {
           {!hasUserNumber ? (
             <StartGameScreen onStartNumber={startGameNumber} />
           ) : (
-            <GameScreen />
+            <GameScreen userNumber={hasUserNumber} />
           )}
         </SafeAreaView>
       </ImageBackground>
