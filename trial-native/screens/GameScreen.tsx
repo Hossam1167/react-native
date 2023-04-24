@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import { useState } from "react";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Cart from "../components/ui/Cart";
 import InstructionText from "../components/ui/InstructionText";
+import { Ionicons } from "@expo/vector-icons";
 
 const styles = StyleSheet.create({
   screen: {
@@ -75,12 +76,12 @@ const GameScreen = ({ userNumber }: GameScreenProps) => {
         <View style={styles.buttonContainer}>
           <View style={{ flex: 1 }}>
             <PrimaryButton onPressProp={() => nextGuessHandler("greater")}>
-              +
+              <Ionicons name="md-add" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={{ flex: 1 }}>
             <PrimaryButton onPressProp={() => nextGuessHandler("lower")}>
-              -
+              <Ionicons name="md-remove" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>

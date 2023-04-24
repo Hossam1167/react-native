@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -9,6 +9,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import { colors } from "./constants/colors";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import * as SplashScreen from "expo-splash-screen";
 
 const styles = StyleSheet.create({
   rootScreen: {
@@ -19,17 +22,35 @@ const styles = StyleSheet.create({
   },
 });
 
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
   const [hasUserNumber, setHasUserNamber] = useState<number | null>(null);
+  const [isAppReady, setIsAppReady] = useState(false);
 
   const startGameNumber = (startNumber: number) => {
     setHasUserNamber(startNumber);
   };
 
+  const [fontIsLoading] = useFonts({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+  });
+  const onLayoutRootView = useCallback(async () => {
+    if (fontIsLoading) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontIsLoading]);
+
+  if (!fontIsLoading) {
+    return null;
+  }
+
   return (
     <LinearGradient
       colors={[colors.pink, colors.blue]}
       style={styles.rootScreen}
+      onLayout={onLayoutRootView}
     >
       <ImageBackground
         source={require("./assets/images/background.png")}

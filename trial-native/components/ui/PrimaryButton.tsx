@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 export interface PrimaryButtonProps {
   buttonLabel?: string;
   onPressProp: () => void;
-  children?: ReactElement[] | string;
+  children?: React.ReactNode;
 }
 
 const PrimaryButton = ({
