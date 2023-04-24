@@ -2,14 +2,18 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 import { useState } from "react";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
-import PrimaryButton, {
-  PrimaryButtonProps,
-} from "../components/ui/PrimaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
+import Cart from "../components/ui/Cart";
+import InstructionText from "../components/ui/InstructionText";
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    gap: 15,
   },
 });
 
@@ -66,17 +70,21 @@ const GameScreen = ({ userNumber }: GameScreenProps) => {
     <View style={styles.screen}>
       <Title>Opponet's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>Higher or Lower?</Text>
-        <View>
-          <PrimaryButton onPressProp={() => nextGuessHandler("greater")}>
-            +
-          </PrimaryButton>
-          <PrimaryButton onPressProp={() => nextGuessHandler("lower")}>
-            -
-          </PrimaryButton>
+      <Cart>
+        <InstructionText>Higher or Lower?</InstructionText>
+        <View style={styles.buttonContainer}>
+          <View style={{ flex: 1 }}>
+            <PrimaryButton onPressProp={() => nextGuessHandler("greater")}>
+              +
+            </PrimaryButton>
+          </View>
+          <View style={{ flex: 1 }}>
+            <PrimaryButton onPressProp={() => nextGuessHandler("lower")}>
+              -
+            </PrimaryButton>
+          </View>
         </View>
-      </View>
+      </Cart>
     </View>
   );
 };

@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { View, TextInput, StyleSheet, Alert, Text } from "react-native";
+import { View, TextInput, StyleSheet, Alert } from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { colors } from "../constants/colors";
+import Title from "../components/ui/Title";
+import Cart from "../components/ui/Cart";
+import InstructionText from "../components/ui/InstructionText";
+
 const styles = StyleSheet.create({
   screenContainer: {
     padding: 16,
@@ -64,7 +68,9 @@ const StartGameScreen = ({ onStartNumber }: StartGameScreenProps) => {
     onStartNumber(chosenNumber);
   };
   return (
-    <View style={styles.screenContainer}>
+    <Cart>
+      <Title>Guess my Number</Title>
+      <InstructionText>Enter a number</InstructionText>
       <TextInput
         style={styles.inputArea}
         maxLength={2}
@@ -88,7 +94,7 @@ const StartGameScreen = ({ onStartNumber }: StartGameScreenProps) => {
           />
         </View>
       </View>
-    </View>
+    </Cart>
   );
 };
 
